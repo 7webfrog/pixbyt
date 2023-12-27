@@ -12,12 +12,12 @@ x-remote-image:
 
 services:
   pixbyt:
-    # <<: *local-image
-    <<: *remote-image # TODO: use this instead of the line above to use a remote image
+    <<: *local-image
+    # <<: *remote-image # TODO: use this instead of the line above to use a remote image
     platform: linux/amd64
     container_name: pixbyt
     environment:
-      MELTANO_DATABASE_URI: postgresql://postgres:postgres@localhost:5433/meltano
+      MELTANO_DATABASE_URI: postgresql://postgres:postgres@localhost:5435/meltano
       AIRFLOW_DATABASE_SQL_ALCHEMY_CONN: postgresql://postgres:postgres@localhost:5434/airflow
     env_file: .env
     volumes:
@@ -38,7 +38,7 @@ services:
     volumes:
     - meltano_postgresql_data:/var/lib/postgresql/data
     ports:
-    - 5433:5432
+    - 5435:5432
     restart: unless-stopped
 
   airflow-db:
